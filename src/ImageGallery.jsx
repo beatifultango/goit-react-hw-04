@@ -1,5 +1,6 @@
 import React from "react";
 import css from "./ImageGallery.module.css";
+import ImageCard from "./ImageCard";
 
 const ImageGallery = ({ photos }) => {
   return (
@@ -7,9 +8,7 @@ const ImageGallery = ({ photos }) => {
       <ul className={css.gallery}>
         {photos.map(({ id, title, url }) => (
           <li key={id} className={css.perPhoto}>
-            <div>
-              <img src={url} alt={title} />
-            </div>
+            <ImageCard url={url} title={title} />
           </li>
         ))}
       </ul>

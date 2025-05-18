@@ -1,14 +1,17 @@
-
-
 .gallery {
   display: grid;
-  grid-template-columns: repeat(4,1fr);
-  gap:5px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 300px);
+  grid-gap: 5px;
+  padding: 10px;
+  background-color: rgb(124, 21, 62);
+  object-fit: fill;
 }
 
-.perPhoto{
- list-style-type: none;
- 
-    
+.perPhoto {
+  list-style-type: none;
+  display: flex;
 }
-
+.perPhoto img {
+  width: 100%;
+}

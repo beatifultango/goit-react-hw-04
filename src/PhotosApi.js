@@ -10,6 +10,7 @@ export const fetchPhotos = async (search) => {
   const response = await axios.get("/search/photos", {
     params: {
       query: search,
+      per_page:16,
     },
   });
   return response.data.results.map((photo) => ({

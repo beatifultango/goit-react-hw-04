@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SearchBar from "./components/searchBar";
+import SearchBar from "./components/SearchBar";
 import { Toaster, toast } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
 import ImageGallery from "./ImageGallery";
