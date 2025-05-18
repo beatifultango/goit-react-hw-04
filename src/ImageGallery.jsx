@@ -1,11 +1,12 @@
 import React from "react";
+import css from "./ImageGallery.module.css";
 
 const ImageGallery = ({ photos }) => {
   return (
     <div>
-      <ul>
+      <ul className={css.gallery}>
         {photos.map(({ id, title, url }) => (
-          <li key={id}>
+          <li key={id} className={css.perPhoto}>
             <div>
               <img src={url} alt={title} />
             </div>
