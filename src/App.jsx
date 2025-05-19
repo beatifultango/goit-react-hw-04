@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchBar from "./components/SearchBar";
 import { Toaster, toast } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
 import ImageGallery from "./ImageGallery";
-
 import "./App.css";
 import { fetchPhotos } from "./PhotosApi";
+import Loader from "./Loader";
 
 function App() {
   const warning = () => {
@@ -15,23 +15,29 @@ function App() {
       icon: "🥱",
     });
   };
+
+  useEffect(() => {
+    fetchPhotos();
+  }, []);
   const [search, setSearch] = useState("");
   const [photos, setPhotos] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [isloading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
 
   const handleSearch = async (searchTerm) => {
     try {
-      setLoading(true);
+      setIsLoading(true);
       const data = await fetchPhotos(searchTerm);
       console.log(data);
       setPhotos(data);
     } catch (error) {
       setError(true);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
+
+  if (isloading) return <Loader />;
 
   return (
     <>
@@ -45,6 +51,7 @@ function App() {
       />
       <SearchBar onSearch={handleSearch} onClick={warning} />
       <ImageGallery photos={photos} />
+      <Loader />
     </>
   );
 }
