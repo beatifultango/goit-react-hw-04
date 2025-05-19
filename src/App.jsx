@@ -51,7 +51,7 @@ function App() {
       />
       <SearchBar onSearch={handleSearch} onClick={warning} />
       <ImageGallery photos={photos} />
-      <Loader />
+    
     </>
   );
 }
