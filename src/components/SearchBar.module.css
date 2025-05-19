@@ -1,4 +1,5 @@
 .searchBtn {
+ 
   margin: 10px;
   background-color: #102e9c;
   color:rgb(191, 207, 221);
@@ -15,7 +16,16 @@
 .searchBar {
   border: 1px solid red;
   border-radius: 5px;
-  
-  
+  height:50%;
+}
 
+.searchBar:hover{
+  background-color: #cdcce1;
+}
+header{
+ 
+  display: flex;
+  justify-content: center;
+  background-color: rgba(227, 86, 218, 0.925);
+  border-radius: 5px;
 }
