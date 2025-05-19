@@ -1,6 +1,6 @@
 import React from 'react'
 import { RiseLoader } from 'react-spinners'
-const Loader = ({size=50}) => {
+const Loader = ({size=30}) => {
   return (
     <div>
       <RiseLoader size={size}/>

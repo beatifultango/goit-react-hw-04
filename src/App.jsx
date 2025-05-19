@@ -6,6 +6,7 @@ import ImageGallery from "./ImageGallery";
 import "./App.css";
 import { fetchPhotos } from "./PhotosApi";
 import Loader from "./Loader";
+import ErrorMessage from "./ErrorMessage";
 
 function App() {
   const warning = () => {
@@ -50,8 +51,8 @@ function App() {
         }}
       />
       <SearchBar onSearch={handleSearch} onClick={warning} />
+      {error && <ErrorMessage />}
       <ImageGallery photos={photos} />
-    
     </>
   );
 }
