@@ -7,6 +7,7 @@ import "./App.css";
 import { fetchPhotos } from "./PhotosApi";
 import Loader from "./Loader";
 import ErrorMessage from "./ErrorMessage";
+import LoadMoreBtn from "./LoadMoreBtn";
 
 function App() {
   const warning = () => {
@@ -24,6 +25,7 @@ function App() {
   const [photos, setPhotos] = useState([]);
   const [isloading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [page, setPage] = useState(1);
 
   const handleSearch = async (searchTerm) => {
     try {
@@ -39,6 +41,16 @@ function App() {
   };
 
   if (isloading) return <Loader />;
+  const loadMore = async () => {
+    setIsLoading(true);
+    const nextPage = page + 1;
+
+    const response = await fetchPhotos(nextPage);
+
+    setPhotos((prev) => [...prev, ...response]);
+    setPage(nextPage);
+    setIsLoading(false);
+  };
 
   return (
     <>
@@ -53,6 +65,7 @@ function App() {
       <SearchBar onSearch={handleSearch} onClick={warning} />
       {error && <ErrorMessage />}
       <ImageGallery photos={photos} />
+      <LoadMoreBtn load={loadMore} />
     </>
   );
 }

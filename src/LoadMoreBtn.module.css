@@ -1,0 +1,22 @@
+.loadBtn {
+  width: 200px;
+  height: 30px;
+  background-color: rgb(36, 53, 239);
+  color: azure;
+  border-radius: 5px;
+  border: 2px dashed white;
+}
+
+.loadBtn:hover {
+  cursor: pointer;
+  background-color: rgb(239, 49, 144);
+  color: azure;
+  border: 4px dotted  rgb(35, 2, 2);
+}
+
+.btnDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}

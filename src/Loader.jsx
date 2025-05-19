@@ -1,9 +1,9 @@
 import React from 'react'
-import { ColoRing } from 'react-spinners'
-const Loader = ({size=30}) => {
+import { RiseLoader } from 'react-spinners'
+const Loader = ({size=50}) => {
   return (
     <div>
-      <ColoRing size={size}/>
+      <RiseLoader size={size}/>
     </div>
   )
 }
