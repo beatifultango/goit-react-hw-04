@@ -8,6 +8,7 @@ import { fetchPhotos } from "./PhotosApi";
 import Loader from "./Loader";
 import ErrorMessage from "./ErrorMessage";
 import LoadMoreBtn from "./LoadMoreBtn";
+import ImageModal from "./ImageModal";
 
 function App() {
   const warning = () => {
@@ -18,14 +19,21 @@ function App() {
     });
   };
 
-  useEffect(() => {
-    fetchPhotos();
-  }, []);
+ 
   const [search, setSearch] = useState("");
   const [photos, setPhotos] = useState([]);
   const [isloading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const [page, setPage] = useState(1);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [alt, setAlt] = useState("");
+  useEffect(() => {
+    const fetchImages = async (image) => {
+      const images = await fetchPhotos(image);
+      setPhotos(images);
+    };
+  });
 
   const handleSearch = async (searchTerm) => {
     try {
@@ -52,6 +60,18 @@ function App() {
     setIsLoading(false);
   };
 
+  const handleModal = (image) => {
+    setSelectedImage(image);
+    setAlt(image.title || "") ;
+    setModalIsOpen(true);
+  };
+  const closeModal=()=>{
+
+    setSelectedImage(null);
+    setModalIsOpen(false);
+
+  }
+
   return (
     <>
       <Toaster
@@ -64,7 +84,15 @@ function App() {
       />
       <SearchBar onSearch={handleSearch} onClick={warning} />
       {error && <ErrorMessage />}
-      <ImageGallery photos={photos} />
+      <ImageGallery photos={photos} onClick={handleModal} />
+      {selectedImage && (
+        <ImageModal
+          isOpen={modalIsOpen}
+          onClose={closeModal}
+          imgSrc={selectedImage.url}
+          altText={selectedImage.title}
+        />
+      )}
       <LoadMoreBtn load={loadMore} />
     </>
   );
